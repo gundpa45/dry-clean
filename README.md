@@ -42,6 +42,11 @@ mongodb uri =
    ```
    The frontend will run on `http://localhost:5173` (or a similar port specified by Vite).
 
+### Admin Login Credentials
+To access the application, use the following default credentials:
+- **Admin ID**: `0001`
+- **Password**: `1110`
+
 ---
 
 ## 🔹 Features Implemented
@@ -51,7 +56,7 @@ mongodb uri =
 - **View Orders**: Data table listing all orders.
 - **Search & Filtering**: Filter orders by status and search by customer name, phone, or order ID.
 - **Basic Dashboard**: Visual cards displaying total orders, total revenue, and order status breakdown.
-- **Authentication**: JWT-based secure login screen with hardcoded admin credentials.
+- **Authentication**: JWT-based secure login screen with hardcoded admin credentials (Admin ID: `0001`, Password: `1110`).
 - **Loading State**: Visual spinner during data fetching.
 - **Modern Aesthetic**: Glassmorphism UI elements, dark mode default, subtle animations, and SCSS styling for maintainability.
 - **Dummy Data Seeding**: `npm run seed` instantly populates the DB for testing.

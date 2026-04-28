@@ -1,0 +1,394 @@
+@use "sass:color";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+// Variables
+$primary: #0ea5e9;
+$primary-hover: #0284c7;
+$secondary: #f43f5e;
+$background: #0f172a;
+$surface: #1e293b;
+$surface-hover: #334155;
+$text-primary: #f8fafc;
+$text-secondary: #cbd5e1;
+$border: #334155;
+
+$success: #10b981;
+$warning: #f59e0b;
+$info: #3b82f6;
+$purple: #8b5cf6;
+
+// Mixins
+@mixin glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: $background;
+  color: $text-primary;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  @include glass;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1.5rem;
+    
+    a {
+      color: $text-secondary;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+      
+      &:hover, &.active {
+        color: $primary;
+      }
+    }
+  }
+}
+
+.main-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+}
+
+// Utility Classes
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  
+  &-primary {
+    background: $primary;
+    color: white;
+    
+    &:hover {
+      background: $primary-hover;
+      transform: translateY(-1px);
+    }
+  }
+  
+  &-secondary {
+    background: $surface-hover;
+    color: $text-primary;
+    
+    &:hover {
+      background: $border;
+    }
+  }
+}
+
+.card {
+  @include glass;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.2s;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Layout components
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  .stat-title {
+    color: $text-secondary;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $text-primary;
+  }
+}
+
+// Table
+.table-container {
+  @include glass;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid $border;
+  }
+  
+  th {
+    background: rgba(0,0,0,0.2);
+    color: $text-secondary;
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  
+  tr {
+    transition: background-color 0.2s;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+  }
+  
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  
+  &.RECEIVED {
+    background: rgba($info, 0.2);
+    color: color.adjust($info, $lightness: 20%);
+    border: 1px solid rgba($info, 0.3);
+  }
+  
+  &.PROCESSING {
+    background: rgba($warning, 0.2);
+    color: color.adjust($warning, $lightness: 20%);
+    border: 1px solid rgba($warning, 0.3);
+  }
+  
+  &.READY {
+    background: rgba($purple, 0.2);
+    color: color.adjust($purple, $lightness: 20%);
+    border: 1px solid rgba($purple, 0.3);
+  }
+  
+  &.DELIVERED {
+    background: rgba($success, 0.2);
+    color: color.adjust($success, $lightness: 20%);
+    border: 1px solid rgba($success, 0.3);
+  }
+}
+
+// Forms
+.form-group {
+  margin-bottom: 1rem;
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: $text-secondary;
+    font-size: 0.875rem;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 0.75rem;
+    background: $background;
+    border: 1px solid $border;
+    border-radius: 6px;
+    color: $text-primary;
+    font-family: inherit;
+    
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 2px rgba($primary, 0.2);
+    }
+  }
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba($primary, 0.2);
+    border-left-color: $primary;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Modal
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  @include glass;
+  background: $surface;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 2rem;
+  
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    
+    h2 {
+      margin: 0;
+    }
+    
+    .close-btn {
+      background: none;
+      border: none;
+      color: $text-secondary;
+      font-size: 1.5rem;
+      cursor: pointer;
+      
+      &:hover {
+        color: $text-primary;
+      }
+    }
+  }
+}
+
+.garment-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  background: rgba(0,0,0,0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  
+  .remove-btn {
+    background: none;
+    border: none;
+    color: $secondary;
+    cursor: pointer;
+    font-size: 1.25rem;
+    
+    &:hover {
+      color: color.adjust($secondary, $lightness: 10%);
+    }
+  }
+}
+
+// Login Styles
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: $background;
+  padding: 1rem;
+}
+
+.login-card {
+  @include glass;
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  
+  h2 {
+    color: $primary;
+    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+  }
+  
+  p {
+    color: $text-secondary;
+  }
+}
+
+.error-alert {
+  background: rgba($secondary, 0.1);
+  color: color.adjust($secondary, $lightness: 10%);
+  border: 1px solid rgba($secondary, 0.2);
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 0.875rem;
+}

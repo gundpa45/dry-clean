@@ -4,6 +4,11 @@ A lightweight, aesthetically pleasing Dry Cleaning Order Management System built
 
 ## 🔹 Setup Instructions
 
+
+
+##env varibales
+port = 5000
+mongodb uri = 
 ### Prerequisites
 - Node.js (v18 or higher)
 - MongoDB (running locally on port 27017, or update the connection string)
